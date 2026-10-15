@@ -1,0 +1,16 @@
+name: Trigger Cloudflare Pages Rebuild
+
+on:
+  schedule:
+    # 每天定时自动运行一次（UTC 00:00）
+    - cron: '0 0 * * *'
+  # 支持在 GitHub 页面手动一键触发
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Cloudflare Deploy Hook
+        run: |
+          curl -X POST "${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}"
