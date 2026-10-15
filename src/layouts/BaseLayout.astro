@@ -1,0 +1,373 @@
+---
+const {
+  title = "WTN Sourcing | Video Insights & Ground Case Studies",
+  description = "Live factory audits, factory production, packaging structural testing, and QC walkthroughs direct from China manufacturing hubs.",
+  ogImage = "https://blog.wtnsourcing.com/assets/images/share.jpg"
+} = Astro.props;
+---
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>{title}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content={description} />
+  <meta property="og:site_name" content="WTN Sourcing | Video Insights & Ground Case Studies" />
+  <meta property="og:title" content={title} />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="twitter:card" content="summary_large_image" />
+  <link href="https://fonts.googleapis.com/css2?display=swap&family=Pacifico:ital,wght@0,400;1,400&family=Instrument+Sans:ital,wght@0,500;0,700;1,500;1,700&family=Inter:ital,wght@0,400;0,700;1,400;1,700" rel="stylesheet" type="text/css" />
+  <style is:global>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 13pt; scroll-behavior: smooth; }
+    body {
+      background-color: #FFFFFF;
+      background-image: linear-gradient(0deg, #FFFFFF 63%, #E9EEF5 100%);
+      background-attachment: fixed;
+      color: rgba(22, 39, 60, 0.6);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.875;
+      overflow-x: hidden;
+    }
+    a { color: inherit; transition: color 0.25s ease; }
+
+    /* Top Flat Navigation */
+    .top-nav-bar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(22, 39, 60, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .top-nav-inner {
+      max-width: 68rem;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-brand {
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #0DA5DB;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 500;
+    }
+    .nav-links a {
+      color: #16273C;
+      text-decoration: none;
+    }
+    .nav-links a:hover {
+      color: #0DA5DB;
+    }
+    .nav-sep {
+      color: rgba(22, 39, 60, 0.25);
+    }
+
+    /* Main Container */
+    .site-container {
+      max-width: 64rem;
+      margin: 0 auto;
+      padding: 0 2.5rem 6rem 2.5rem;
+    }
+
+    /* Full Screen Gradient Container (Style-4) */
+    .gradient-full-section {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      background-image: linear-gradient(146deg, #33C4B4 0%, #0DA5DB 100%);
+      padding: 5.5rem 2.5rem;
+      color: #FFFFFF;
+    }
+    .gradient-inner {
+      max-width: 60rem;
+      margin: 0 auto;
+    }
+    .text-style-1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.75em;
+      line-height: 1.625;
+      font-weight: 400;
+      background-image: linear-gradient(226deg, #CCF2FF 85%, #FFFFFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.25rem;
+    }
+    .text-style-4 {
+      font-family: 'Instrument Sans', sans-serif;
+      letter-spacing: -0.08rem;
+      font-size: 3.25em;
+      line-height: 1.15;
+      font-weight: 500;
+      color: #FFFFFF;
+      margin-bottom: 1.5rem;
+    }
+    .text-style-9 {
+      font-family: 'Instrument Sans', sans-serif;
+      letter-spacing: -0.025rem;
+      font-size: 2.5em;
+      line-height: 1.25;
+      font-weight: 500;
+      color: #FFFFFF;
+      margin-bottom: 1.5rem;
+    }
+    .text-style-10 {
+      color: rgba(255, 255, 255, 0.85);
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05em;
+      line-height: 1.875;
+    }
+    .text-style-10 strong { color: #FFFFFF; }
+
+    /* Pill Buttons (Style-2) */
+    .pill-button {
+      display: inline-flex;
+      align-items: center;
+      height: 3.25rem;
+      padding: 0 1.625rem;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 1em;
+      font-weight: 500;
+      border-radius: 3rem;
+      box-shadow: 0rem 0.625rem 1.625rem 0rem rgba(22, 39, 60, 0.08);
+      background-color: #FFFFFF;
+      color: #1AAFCB;
+      background-image: linear-gradient(227deg, #DEFAFF 0%, rgba(255,255,255,0.012) 100%);
+      text-decoration: none;
+      margin-top: 2rem;
+      transition: transform 0.25s ease, background-color 0.25s ease;
+    }
+    .pill-button:hover {
+      transform: scale(1.05);
+      background-color: rgba(255, 255, 255, 0.94);
+    }
+    .pill-button svg {
+      width: 1.25em;
+      height: 1.25em;
+      fill: #1AAFCB;
+      margin-left: 1rem;
+    }
+
+    /* Section Dividers & Headings */
+    .divider-short {
+      width: 3rem;
+      height: 8px;
+      border-radius: 30px;
+      background-color: #33C4B4;
+      background-image: linear-gradient(270deg, #0DA5DB 0%, rgba(51,196,180,0.012) 100%);
+      border: 0;
+      margin: 5rem 0 2rem 0;
+    }
+    .divider-full {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      height: 2px;
+      background-color: rgba(22, 39, 60, 0.071);
+      border: 0;
+      margin-top: 6rem;
+    }
+    .text-style-8 {
+      font-family: 'Instrument Sans', sans-serif;
+      letter-spacing: -0.025rem;
+      font-size: 2.5em;
+      line-height: 1.25;
+      font-weight: 500;
+      background-image: linear-gradient(215deg, #0DA5DB 60%, #33C4B4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    .text-style-6 {
+      color: #0DA5DB;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 1.5em;
+      line-height: 1.3;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .text-style-3 {
+      color: rgba(22, 39, 60, 0.65);
+      font-family: 'Inter', sans-serif;
+      font-size: 1em;
+      line-height: 1.875;
+    }
+
+    /* Alternating 2-Column Video Rows */
+    .video-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+      margin-top: 3.5rem;
+    }
+    .video-card-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+    }
+    .video-card-row.reverse {
+      flex-direction: row-reverse;
+    }
+    .card-text-col, .card-video-col {
+      flex: 1;
+      width: 50%;
+    }
+    .pinned-badge {
+      display: inline-block;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06rem;
+      color: #FFFFFF;
+      background: linear-gradient(146deg, #33C4B4 0%, #0DA5DB 100%);
+      padding: 0.25rem 0.75rem;
+      border-radius: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .video-box {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 1.25rem;
+      border: 5px solid #FFFFFF;
+      box-shadow: 0rem 1.75rem 2.375rem 0rem rgba(22, 39, 60, 0.09);
+      overflow: hidden;
+      background: #000;
+    }
+    .video-box iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* CTA 2-Columns */
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .cta-col-right {
+      border-left: 1px solid rgba(255, 255, 255, 0.412);
+      padding-left: 5rem;
+    }
+
+    /* Footer (Style-7) */
+    .footer-text {
+      margin-top: 5rem;
+      color: rgba(22, 39, 60, 0.6);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95em;
+      line-height: 1.95;
+    }
+    .footer-text a {
+      color: #38B5A7;
+      text-decoration: underline;
+    }
+    .footer-text a:hover {
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      html { font-size: 11.5pt; }
+      .video-card-row, .video-card-row.reverse {
+        flex-direction: column-reverse;
+        gap: 2rem;
+      }
+      .card-text-col, .card-video-col { width: 100%; }
+      .cta-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .cta-col-right {
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.412);
+        padding-left: 0;
+        padding-top: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" display="none">
+    <symbol id="icon-arrow-right" viewBox="0 0 40 40">
+      <path d="M34.1,19.9c0,0.3-0.1,0.3-0.1,0.4L21.3,33.1c-0.1,0.1-0.1,0.1-0.4,0.1c-0.3,0-0.3-0.1-0.4-0.1L19,31.6 c-0.1-0.1-0.1-0.1-0.1-0.4s0.1-0.3,0.1-0.4l9.2-9.2H5.8c-0.1,0-0.2,0-0.2,0c0,0,0,0,0,0c-0.1-0.1-0.1-0.2-0.1-0.4v-2.5 c0-0.2,0.1-0.4,0.1-0.5c0,0,0.1,0,0.2,0h22.4L19,9c-0.1-0.1-0.1-0.1-0.1-0.4c0-0.3,0.1-0.3,0.1-0.4l1.5-1.5c0.1-0.1,0.1-0.1,0.4-0.1 c0.3,0,0.3,0.1,0.4,0.1L34,19.5C34,19.6,34.1,19.6,34.1,19.9z"/>
+    </symbol>
+  </svg>
+
+  <!-- Flat Top Navigation Bar -->
+  <header class="top-nav-bar">
+    <div class="top-nav-inner">
+      <a href="/" class="nav-brand">WTN Sourcing Blog</a>
+      <nav class="nav-links">
+        <a href="https://www.wtnsourcing.com">Home</a>
+        <span class="nav-sep">|</span>
+        <a href="https://sourcing.wtnsourcing.com">Product Sourcing</a>
+        <span class="nav-sep">|</span>
+        <a href="https://premium.wtnsourcing.com">Custom Packaging</a>
+        <span class="nav-sep">|</span>
+        <a href="https://kitting.wtnsourcing.com">Kitting &amp; Fulfillment</a>
+        <span class="nav-sep">|</span>
+        <a href="https://process.wtnsourcing.com">Our SOP</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-container">
+    <slot />
+
+    <!-- Bottom Zero-Risk Execution & Free Audit Container -->
+    <section class="gradient-full-section" style="margin-top: 6rem;">
+      <div class="gradient-inner cta-grid">
+        <div>
+          <h2 class="text-style-4">Zero-Risk Execution</h2>
+          <p class="text-style-10">
+            Partner with a team that operates directly <strong>on the ground in China</strong>. We protect your designs with strict China NNN agreements, conduct rigorous AQL inspections, and deliver fully kitted products to your door via DDP. No hidden fees, no customs delay.
+          </p>
+        </div>
+        <div class="cta-col-right">
+          <h2 class="text-style-9">Free Audit</h2>
+          <p class="text-style-10">
+            Send us your packaging dielines or Bill of Materials. Our engineering team will review your files for structural integrity and EU PPWR compliance at absolutely <strong>Zero Cost</strong>.
+          </p>
+          <a href="mailto:team@wtnsourcing.com?subject=DDP/FOB/EXW%20Quote%20Request" class="pill-button">
+            <span>Contact Us via Email</span>
+            <svg><use xlink:href="#icon-arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-text">
+      <p>
+        ©2026 WTN Sourcing. All rights reserved. Established in Hong Kong since 2023.<br />
+        Working Time: 10:00-20:00 (Hong Kong) | 19:00-05:00 (Los Angeles) | 03:00-13:00 (London)<br />
+        Operational Office: <a href="https://maps.app.goo.gl/cgcYgGnVmPagGaKs9" target="_blank">Qian Deng Lake Venture Capital Town, Foshan, Guangdong Province, China</a><br />
+        WhatsApp: +86 166 0305 4221<br />
+        Email: <a href="mailto:team@wtnsourcing.com">team@wtnsourcing.com</a><br />
+        Terms: <a href="https://docs.google.com/document/d/192LkESCtXM-VY0LllAqtTrcqR8vDCsVGnl5_nd9IDbc/edit?usp=sharing" target="_blank">Privacy Policy</a> | <a href="https://docs.google.com/document/d/1-u9N-waPhQ9Rx-DRns_aRoKu4oR73dpBSnQfvkXR7wA/edit?usp=sharing" target="_blank">Term of Service</a> | <a href="https://docs.google.com/document/d/1n2i5AAJaPV8mVroQAS_Np5Rax6TPJfSjZ6dTdq_Z29A/edit?usp=share_link" target="_blank">Non-Disclosure Agreement</a> | <a href="https://docs.google.com/document/d/14KVDP4cTOoz7pBa8L_SOfwv0hphRVegssSf6uD5TOT8/edit?usp=sharing" target="_blank">NNN Agreement</a> | <a href="https://docs.google.com/document/d/12TH8KEFW3Cuy3Um9XtjOAnDgsp-pFK_uqlZZq23mA_Q/edit?usp=sharing" target="_blank">Special Power of Attorney</a> | <a href="https://drive.google.com/drive/folders/1s5HPLF2AmxMsFJWRLornITLuzEtgJ1_p?usp=sharing" target="_blank">Anti-money laundering &amp; Counter-fraud Compliance Statement</a><br />
+        Pages: <a href="https://www.wtnsourcing.com">Home</a> | <a href="https://sourcing.wtnsourcing.com">Consumer Product Sourcing</a> | <a href="https://essentials.wtnsourcing.com">Daily Packaging</a> | <a href="https://premium.wtnsourcing.com">Custom &amp; Discreet Packaging</a> | <a href="https://kitting.wtnsourcing.com">Kitting &amp; Fulfillment</a> | <a href="https://compliance.wtnsourcing.com">Global Compliance</a> | <a href="https://process.wtnsourcing.com">Our SOP</a><br />
+        Business Help: <a href="https://docs.google.com/presentation/d/1wx6HkvamvlbVaO1vFeV0tF2mCoYPTrOE4QhEWlm221U/edit?usp=sharing" target="_blank">Seamless Network Connectivity to the World in China: A Business Traveler's Guide</a> | <a href="https://docs.google.com/presentation/d/1V7jCa2ctO24ZThCgrOR8MsHUcm5DW2_9HLrWF-Qbs6o/edit?usp=sharing" target="_blank">Essential China Entry Guidelines for Overseas Business Travelers</a> | <a href="https://docs.google.com/presentation/d/1J0HLzcZ8ewi2_z0R6rV1ejk6kOk8l33kIq4_lrlfRWE/edit?usp=sharing" target="_blank">Seamless Payment Method in China</a> | <a href="https://docs.google.com/forms/d/e/1FAIpQLSfClIyOi4UrYZ-eoS8hsYqvvh4cL1WGDrPUvZyxW-wUekMo9A/viewform?usp=dialog" target="_blank">Satisfaction Survey</a>
+      </p>
+    </footer>
+  </main>
+</body>
+</html>

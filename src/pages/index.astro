@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPublishedPosts } from '../lib/notion.js';
+
+const allPosts = await getPublishedPosts();
+
+const sectionsConfig = [
+  {
+    key: 'Entry Guidelines',
+    title: 'Essential China Entry Guidelines',
+    subtitle: 'Practical compliance, connectivity, and payment guides for overseas business travelers visiting China.'
+  },
+  {
+    key: 'Factory & Product',
+    title: 'Factory Tour & Product Videos',
+    subtitle: 'Unannounced factory audits, real-time production lines, and structural packaging tests direct from Guangdong.'
+  },
+  {
+    key: 'Knowledge Hub',
+    title: 'Knowledge Hub & Case Study',
+    subtitle: 'In-depth engineering teardowns, AQL quality inspection walkthroughs, and cross-border DDP logistics.'
+  }
+];
+
+const sections = sectionsConfig.map(sec => {
+  const posts = allPosts
+    .filter(p => p.section === sec.key)
+    .sort((a, b) => {
+      if (a.sectionPinned && !b.sectionPinned) return -1;
+      if (!a.sectionPinned && b.sectionPinned) return 1;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+  return { ...sec, posts };
+});
+---
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="gradient-full-section">
+    <div class="gradient-inner">
+      <h1 class="text-style-1">WTN Sourcing from China</h1>
+      <h2 class="text-style-4">Unfiltered Sourcing from the Ground in China</h2>
+      <p class="text-style-10">
+        <em><strong>No theoretical advice, no sales fluff.</strong> Watch real factory audits, packaging stress tests, and live production QC direct from Guangdong's manufacturing floor.</em>
+      </p>
+      <a href="https://www.youtube.com/channel/UCS2t3X9hR_KH_fZ7NXxZTjQ" target="_blank" class="pill-button">
+        <span>Subscribe on YouTube</span>
+        <svg><use xlink:href="#icon-arrow-right"></use></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 3 Categorized Video Streams -->
+  {sections.map((sec, secIdx) => (
+    <section>
+      {secIdx > 0 && <hr class="divider-full" />}
+      <hr class="divider-short" />
+      <h2 class="text-style-8">{sec.title}</h2>
+      <p class="text-style-3"><em>{sec.subtitle}</em></p>
+
+      <div class="video-stream">
+        {sec.posts.map((post, idx) => {
+          const isReverse = idx % 2 === 1;
+          return (
+            <div class={`video-card-row ${isReverse ? 'reverse' : ''}`}>
+              <div class="card-text-col">
+                {post.sectionPinned && <span class="pinned-badge">★ Featured in {sec.key}</span>}
+                <h3 class="text-style-6">{post.title}</h3>
+                <p class="text-style-3"><em>{post.summary}</em></p>
+                <a href={`/posts/${post.slug}`} class="pill-button">
+                  <span>Article Reading</span>
+                  <svg><use xlink:href="#icon-arrow-right"></use></svg>
+                </a>
+              </div>
+              <div class="card-video-col">
+                <div class="video-box">
+                  {post.youtubeId ? (
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${post.youtubeId}?rel=0&controls=1`}
+                      title={post.title}
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  ) : (
+                    <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#fff;">No Video URL</div>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  ))}
+</BaseLayout>
