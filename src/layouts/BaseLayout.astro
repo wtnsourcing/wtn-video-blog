@@ -137,7 +137,7 @@ const {
     }
     .text-style-10 strong { color: #FFFFFF; }
 
-    /* Pill Buttons (Style-2) */
+    /* 默认 Pill Buttons (保持 Header 与 Footer 的白底浅蓝风格不变) */
     .pill-button {
       display: inline-flex;
       align-items: center;
@@ -260,6 +260,39 @@ const {
       border: 0;
     }
 
+    /* ========================================================
+       专属定制：每篇文章的 "Article Reading" 按钮升级为 #0DA5DB 天蓝渐变
+       (精准匹配卡片内按钮，绝不影响 Header 和 Footer 的原有按钮)
+       ======================================================== */
+    .card-text-col .pill-button,
+    .video-card-row .pill-button,
+    .video-stream .pill-button,
+    a.article-reading-btn {
+      background-color: transparent !important;
+      background: linear-gradient(135deg, #22C5B3 0%, #0DA5DB 100%) !important;
+      background-image: linear-gradient(135deg, #22C5B3 0%, #0DA5DB 100%) !important;
+      color: #FFFFFF !important;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(13, 165, 219, 0.28) !important;
+      transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card-text-col .pill-button:hover,
+    .video-card-row .pill-button:hover,
+    .video-stream .pill-button:hover,
+    a.article-reading-btn:hover {
+      transform: scale(1.05);
+      filter: brightness(1.08);
+      box-shadow: 0 6px 20px rgba(13, 165, 219, 0.42) !important;
+      color: #FFFFFF !important;
+    }
+    .card-text-col .pill-button svg,
+    .video-card-row .pill-button svg,
+    .video-stream .pill-button svg,
+    a.article-reading-btn svg {
+      fill: #FFFFFF !important;
+      transition: fill 0.25s ease;
+    }
+
     /* CTA 2-Columns */
     .cta-grid {
       display: grid;
@@ -355,186 +388,181 @@ const {
       </div>
     </section>
 
-<!-- 1:1 复刻原版询盘表单 -->
-<section class="form-wrapper-section">
-  <form id="wtn-quote-form" class="form-component instance-1">
-    <!-- Web3Forms 密钥与配置 -->
-    <input type="hidden" name="access_key" value="36ff9d6a-ff8c-4b23-b4be-af48f101af0e" />
-    <input type="hidden" name="from_name" value="WTN Sourcing Quote Request" />
-    <input type="hidden" name="subject" value="New DDP/FOB/EXW Quote Request from blog.wtnsourcing.com" />
-    
-    <!-- 防垃圾爬虫蜜罐字段 (用户不可见) -->
-    <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+    <!-- 1:1 复刻原版询盘表单 -->
+    <section class="form-wrapper-section">
+      <form id="wtn-quote-form" class="form-component instance-1">
+        <!-- Web3Forms 密钥与配置 -->
+        <input type="hidden" name="access_key" value="36ff9d6a-ff8c-4b23-b4be-af48f101af0e" />
+        <input type="hidden" name="from_name" value="WTN Sourcing Quote Request" />
+        <input type="hidden" name="subject" value="New DDP/FOB/EXW Quote Request from blog.wtnsourcing.com" />
+        
+        <!-- 防垃圾爬虫蜜罐字段 (用户不可见) -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
-    <div class="inner">
-      <div class="field">
-        <input type="text" name="name" id="form01-name" placeholder="Name" maxlength="128" required />
-      </div>
-      <div class="field">
-        <input type="text" name="company" id="form01-company" placeholder="Your D2C Store URL / Website" maxlength="128" required />
-      </div>
-      <div class="field">
-        <input type="email" name="email" id="form01-email" placeholder="Email" maxlength="128" required />
-      </div>
-      <div class="field">
-        <input type="tel" pattern="[0-9\\-\\(\\)+ #*]+" minlength="7" maxlength="28" name="phone" id="form01-phone" placeholder="Phone Number (optional)" />
-      </div>
-      <div class="field">
-        <input type="text" name="custom_subject" id="form01-subject" value="Subject: DDP/FOB/EXW Quote Request" placeholder="Subject: DDP/FOB/EXW Quote Request" maxlength="128" required />
-      </div>
-      <div class="field">
-        <textarea name="message" id="form01-message" placeholder="Message (Include your product details, quantities, packaging specs, or target dates)" maxlength="16384" required></textarea>
-      </div>
+        <div class="inner">
+          <div class="field">
+            <input type="text" name="name" id="form01-name" placeholder="Name" maxlength="128" required />
+          </div>
+          <div class="field">
+            <input type="text" name="company" id="form01-company" placeholder="Your D2C Store URL / Website" maxlength="128" required />
+          </div>
+          <div class="field">
+            <input type="email" name="email" id="form01-email" placeholder="Email" maxlength="128" required />
+          </div>
+          <div class="field">
+            <input type="tel" pattern="[0-9\\-\\(\\)+ #*]+" minlength="7" maxlength="28" name="phone" id="form01-phone" placeholder="Phone Number (optional)" />
+          </div>
+          <div class="field">
+            <input type="text" name="custom_subject" id="form01-subject" value="Subject: DDP/FOB/EXW Quote Request" placeholder="Subject: DDP/FOB/EXW Quote Request" maxlength="128" required />
+          </div>
+          <div class="field">
+            <textarea name="message" id="form01-message" placeholder="Message (Include your product details, quantities, packaging specs, or target dates)" maxlength="16384" required></textarea>
+          </div>
 
-      <div class="actions">
-        <button type="submit" id="submit-btn">Request DDP/FOB/EXW Quote</button>
-      </div>
-      <div id="form-result" class="form-result-text"></div>
-    </div>
-  </form>
-</section>
+          <div class="actions">
+            <button type="submit" id="submit-btn">Request DDP/FOB/EXW Quote</button>
+          </div>
+          <div id="form-result" class="form-result-text"></div>
+        </div>
+      </form>
+    </section>
 
-<!-- 原版 1:1 视觉样式匹配 -->
-<style>
-  .form-wrapper-section {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin: 5rem 0 3rem 0;
-    padding: 0 1.5rem;
-  }
-  .form-component.instance-1 {
-    width: 100%;
-    max-width: 32rem;
-  }
-  .form-component.instance-1 .inner {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    width: 100%;
-  }
-  .form-component.instance-1 input[type="text"],
-  .form-component.instance-1 input[type="email"],
-  .form-component.instance-1 input[type="tel"],
-  .form-component.instance-1 textarea {
-    font-size: 1rem;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 400;
-    border-radius: 0.625rem;
-    color: rgba(23, 21, 21, 0.85);
-    border: solid 1.5px #33C4B4;
-    background-color: #FFFFFF;
-    outline: none;
-    width: 100%;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  .form-component.instance-1 input[type="text"],
-  .form-component.instance-1 input[type="email"],
-  .form-component.instance-1 input[type="tel"] {
-    height: 3.25rem;
-    padding: 0 1.15rem;
-  }
-  .form-component.instance-1 textarea {
-    padding: 1rem 1.15rem;
-    height: 9rem;
-    resize: vertical;
-    line-height: 1.6;
-  }
-  .form-component.instance-1 input:focus,
-  .form-component.instance-1 textarea:focus {
-    border-color: #0DA5DB;
-    box-shadow: 0 0 0 3px rgba(13, 165, 219, 0.15);
-  }
-  .turnstile-row {
-    display: flex;
-    justify-content: center;
-    margin: 0.5rem 0;
-  }
-  .form-component.instance-1 .actions button {
-    display: inline-block;
-    width: 100%;
-    height: 3.25rem;
-    line-height: 3.25rem;
-    padding: 0 1.625rem;
-    font-family: 'Instrument Sans', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    border-radius: 0.625rem;
-    border: none;
-    background-color: #FFFFFF;
-    color: #1AAFCB;
-    border: 1.5px solid #1AAFCB;
-    box-shadow: 0 0.5rem 1.25rem rgba(22, 39, 60, 0.08);
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-  }
-  .form-component.instance-1 .actions button:hover {
-    background-color: #1AAFCB;
-    color: #FFFFFF;
-    transform: translateY(-2px);
-  }
-  .form-component.instance-1 .actions button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
-  .form-result-text {
-    font-size: 0.95rem;
-    text-align: center;
-    margin-top: 0.5rem;
-    font-family: 'Inter', sans-serif;
-  }
-</style>
+    <!-- 原版 1:1 视觉样式匹配 -->
+    <style>
+      .form-wrapper-section {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 5rem 0 3rem 0;
+        padding: 0 1.5rem;
+      }
+      .form-component.instance-1 {
+        width: 100%;
+        max-width: 32rem;
+      }
+      .form-component.instance-1 .inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        width: 100%;
+      }
+      .form-component.instance-1 input[type="text"],
+      .form-component.instance-1 input[type="email"],
+      .form-component.instance-1 input[type="tel"],
+      .form-component.instance-1 textarea {
+        font-size: 1rem;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 400;
+        border-radius: 0.625rem;
+        color: rgba(23, 21, 21, 0.85);
+        border: solid 1.5px #33C4B4;
+        background-color: #FFFFFF;
+        outline: none;
+        width: 100%;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      .form-component.instance-1 input[type="text"],
+      .form-component.instance-1 input[type="email"],
+      .form-component.instance-1 input[type="tel"] {
+        height: 3.25rem;
+        padding: 0 1.15rem;
+      }
+      .form-component.instance-1 textarea {
+        padding: 1rem 1.15rem;
+        height: 9rem;
+        resize: vertical;
+        line-height: 1.6;
+      }
+      .form-component.instance-1 input:focus,
+      .form-component.instance-1 textarea:focus {
+        border-color: #0DA5DB;
+        box-shadow: 0 0 0 3px rgba(13, 165, 219, 0.15);
+      }
+      .form-component.instance-1 .actions button {
+        display: inline-block;
+        width: 100%;
+        height: 3.25rem;
+        line-height: 3.25rem;
+        padding: 0 1.625rem;
+        font-family: 'Instrument Sans', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        border-radius: 0.625rem;
+        border: none;
+        background-color: #FFFFFF;
+        color: #1AAFCB;
+        border: 1.5px solid #1AAFCB;
+        box-shadow: 0 0.5rem 1.25rem rgba(22, 39, 60, 0.08);
+        cursor: pointer;
+        transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+      }
+      .form-component.instance-1 .actions button:hover {
+        background-color: #1AAFCB;
+        color: #FFFFFF;
+        transform: translateY(-2px);
+      }
+      .form-component.instance-1 .actions button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .form-result-text {
+        font-size: 0.95rem;
+        text-align: center;
+        margin-top: 0.5rem;
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
 
-<!-- 无跳转异步提交交互脚本 -->
-<script is:inline>
-  const form = document.getElementById('wtn-quote-form');
-  const result = document.getElementById('form-result');
-  const submitBtn = document.getElementById('submit-btn');
+    <!-- 无跳转异步提交交互脚本 -->
+    <script is:inline>
+      const form = document.getElementById('wtn-quote-form');
+      const result = document.getElementById('form-result');
+      const submitBtn = document.getElementById('submit-btn');
 
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      submitBtn.disabled = true;
-      submitBtn.innerText = 'Submitting...';
-      result.style.color = '#5B6573';
-      result.innerText = 'Sending your inquiry...';
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          submitBtn.disabled = true;
+          submitBtn.innerText = 'Submitting...';
+          result.style.color = '#5B6573';
+          result.innerText = 'Sending your inquiry...';
 
-      const formData = new FormData(form);
-      const object = Object.fromEntries(formData);
-      const json = JSON.stringify(object);
+          const formData = new FormData(form);
+          const object = Object.fromEntries(formData);
+          const json = JSON.stringify(object);
 
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: json
-      })
-      .then(async (response) => {
-        let json = await response.json();
-        if (response.status == 200) {
-          result.style.color = '#38B5A7';
-          result.innerHTML = '<strong>Success!</strong> Your quote request has been sent to our team. We will reply within 24 hours.';
-          form.reset();
-        } else {
-          result.style.color = '#E53E3E';
-          result.innerText = json.message || 'Submission failed. Please email us directly at team@wtnsourcing.com';
-        }
-      })
-      .catch((error) => {
-        result.style.color = '#E53E3E';
-        result.innerText = 'Network error. Please email us directly at team@wtnsourcing.com';
-      })
-      .then(function () {
-        submitBtn.disabled = false;
-        submitBtn.innerText = 'Request DDP/FOB/EXW Quote';
-      });
-    });
-  }
-</script>
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: json
+          })
+          .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+              result.style.color = '#38B5A7';
+              result.innerHTML = '<strong>Success!</strong> Your quote request has been sent to our team. We will reply within 24 hours.';
+              form.reset();
+            } else {
+              result.style.color = '#E53E3E';
+              result.innerText = json.message || 'Submission failed. Please email us directly at team@wtnsourcing.com';
+            }
+          })
+          .catch((error) => {
+            result.style.color = '#E53E3E';
+            result.innerText = 'Network error. Please email us directly at team@wtnsourcing.com';
+          })
+          .then(function () {
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'Request DDP/FOB/EXW Quote';
+          });
+        });
+      }
+    </script>
 
     <!-- Footer -->
     <footer class="footer-text">
