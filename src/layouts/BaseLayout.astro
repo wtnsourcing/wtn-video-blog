@@ -355,7 +355,7 @@ const {
       </div>
     </section>
 
-<!-- 1:1 复刻原版询盘表单与 Cloudflare Turnstile 验证区 -->
+<!-- 1:1 复刻原版询盘表单 -->
 <section class="form-wrapper-section">
   <form id="wtn-quote-form" class="form-component instance-1">
     <!-- Web3Forms 密钥与配置 -->
@@ -386,11 +386,6 @@ const {
         <textarea name="message" id="form01-message" placeholder="Message (Include your product details, quantities, packaging specs, or target dates)" maxlength="16384" required></textarea>
       </div>
 
-      <!-- Cloudflare Turnstile 人机验证框 (使用原版统一站点密钥) -->
-      <div class="turnstile-row">
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEOuLFxxPrNWs8oN" data-theme="light"></div>
-      </div>
-
       <div class="actions">
         <button type="submit" id="submit-btn">Request DDP/FOB/EXW Quote</button>
       </div>
@@ -398,9 +393,6 @@ const {
     </div>
   </form>
 </section>
-
-<!-- 引入 Cloudflare Turnstile 官方脚本 -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <!-- 原版 1:1 视觉样式匹配 -->
 <style>
