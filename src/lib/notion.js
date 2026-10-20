@@ -38,10 +38,12 @@ export async function getPublishedPosts() {
     },
   });
 
-  return response.results.map(page => {
+return response.results.map(page => {
     const props = page.properties;
-    const title = props['Title']?.title?.[0]?.plain_text || 'Untitled';
-    const rawSlug = props['Slug']?.rich_text?.[0]?.plain_text || '';
+    // 自动遍历拼接所有文本碎片，确保标题无论怎么编辑都能 100% 完整显示
+    const title = props['Title']?.title?.map(t => t.plain_text).join('') || 'Untitled';
+    // slug 同样做自动拼接处理
+    const rawSlug = props['Slug']?.rich_text?.map(t => t.plain_text).join('') || '';
     const slug = rawSlug.trim() || page.id;
     const section = props['Section']?.select?.name || 'Knowledge Hub';
     const sectionPinned = props['Section Pinned']?.checkbox || false;
