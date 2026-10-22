@@ -1,39 +1,42 @@
-import type { APIRoute } from 'astro';
-// 引入项目中获取 Notion 文章列表的方法（请按实际文件路径调整）
-import { getPosts } from '../lib/notion'; 
+import { getPublishedPosts } from '../lib/notion.js';
 
-export const GET: APIRoute = async () => {
-  const posts = await getPosts();
+export async function GET() {
+  const posts = await getPublishedPosts();
   const siteUrl = 'https://blog.wtnsourcing.com';
 
-  // 静态固定页面（首页等）
-  const staticPages = [
-    { url: `${siteUrl}/`, changefreq: 'daily', priority: '1.0' },
-  ];
+  // 格式化日期为 W3C 标准 (YYYY-MM-DD)
+  const formatDate = (dateStr) => {
+    try {
+      const d = new Date(dateStr);
+      if (!isNaN(d.getTime())) {
+        return d.toISOString().split('T')[0];
+      }
+    } catch (e) {}
+    return new Date().toISOString().split('T')[0];
+  };
 
-  // 动态 Notion 文章页面
-  const postPages = posts.map((post) => ({
-    url: `${siteUrl}/posts/${post.slug}`, // 按实际博客文章路由规则配置
-    lastmod: post.lastEditedTime ? new Date(post.lastEditedTime).toISOString().split('T')[0] : '',
-    changefreq: 'weekly',
-    priority: '0.8',
-  }));
-
-  const allPages = [...staticPages, ...postPages];
-
-  // 拼接标准 XML 格式
+  // 拼接标准的 Google XML Sitemap 结构
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allPages
-  .map(
-    (page) => `  <url>
-    <loc>${page.url}</loc>
-    ${page.lastmod ? `<lastmod>${page.lastmod}</lastmod>` : ''}
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
+  <!-- 博客首页 -->
+  <url>
+    <loc>${siteUrl}/</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Notion 动态抓取的每篇文章详情页 -->
+  ${posts
+    .map(
+      (post) => `
+  <url>
+    <loc>${siteUrl}/posts/${post.slug}</loc>
+    <lastmod>${formatDate(post.date)}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>`
-  )
-  .join('\n')}
+    )
+    .join('')}
 </urlset>`.trim();
 
   return new Response(sitemap, {
@@ -41,4 +44,4 @@ ${allPages
       'Content-Type': 'application/xml; charset=utf-8',
     },
   });
-};
+}
