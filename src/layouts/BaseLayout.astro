@@ -380,7 +380,7 @@ const {
           <p class="text-style-10">
             Send us your packaging dielines or Bill of Materials. Our engineering team will review your files for structural integrity and EU PPWR compliance at absolutely <strong>Zero Cost</strong>.
           </p>
-          <a href="mailto:team@wtnsourcing.com?subject=DDP/FOB/EXW%20Quote%20Request" class="pill-button">
+          <a href="mailto:team@wtnsourcing.com?subject=DDP/CIF/FCA%20Quote%20Request" class="pill-button">
             <span>Contact Us via Email</span>
             <svg><use xlink:href="#icon-arrow-right"></use></svg>
           </a>
@@ -394,7 +394,7 @@ const {
         <!-- Web3Forms 密钥与配置 -->
         <input type="hidden" name="access_key" value="36ff9d6a-ff8c-4b23-b4be-af48f101af0e" />
         <input type="hidden" name="from_name" value="WTN Sourcing Quote Request" />
-        <input type="hidden" name="subject" value="New DDP/FOB/EXW Quote Request from blog.wtnsourcing.com" />
+        <input type="hidden" name="subject" value="New DDP/CIF/FCA Quote Request from blog.wtnsourcing.com" />
         
         <!-- 防垃圾爬虫蜜罐字段 (用户不可见) -->
         <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
@@ -413,14 +413,14 @@ const {
             <input type="tel" pattern="[0-9\\-\\(\\)+ #*]+" minlength="7" maxlength="28" name="phone" id="form01-phone" placeholder="Phone Number (optional)" />
           </div>
           <div class="field">
-            <input type="text" name="custom_subject" id="form01-subject" value="Subject: DDP/FOB/EXW Quote Request" placeholder="Subject: DDP/FOB/EXW Quote Request" maxlength="128" required />
+            <input type="text" name="custom_subject" id="form01-subject" value="Subject: DDP/CIF/FCA Quote Request" placeholder="Subject: DDP/CIF/FCA Quote Request" maxlength="128" required />
           </div>
           <div class="field">
             <textarea name="message" id="form01-message" placeholder="Message (Include your product details, quantities, packaging specs, or target dates)" maxlength="16384" required></textarea>
           </div>
 
           <div class="actions">
-            <button type="submit" id="submit-btn">Request DDP/FOB/EXW Quote</button>
+            <button type="submit" id="submit-btn">Request DDP/CIF/FCA Quote</button>
           </div>
           <div id="form-result" class="form-result-text"></div>
         </div>
@@ -558,7 +558,7 @@ const {
           })
           .then(function () {
             submitBtn.disabled = false;
-            submitBtn.innerText = 'Request DDP/FOB/EXW Quote';
+            submitBtn.innerText = 'Request DDP/CIF/FCA Quote';
           });
         });
       }
